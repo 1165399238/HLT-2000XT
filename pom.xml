@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-    <groupId>com.ruoyi</groupId>
+    <groupId>com.cm</groupId>
     <artifactId>Hlt-2000xt</artifactId>
     <version>3.9.1</version>
 
@@ -185,35 +185,35 @@
 
             <!-- 定时任务-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
+                <groupId>com.cm</groupId>
                 <artifactId>htl-2000xt-quartz</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
             <!-- 代码生成-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
+                <groupId>com.cm</groupId>
                 <artifactId>htl-2000xt-generator</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
             <!-- 核心模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
+                <groupId>com.cm</groupId>
                 <artifactId>htl-2000xt-framework</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
             <!-- 系统模块-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
+                <groupId>com.cm</groupId>
                 <artifactId>htl-2000xt-system</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
 
             <!-- 通用工具-->
             <dependency>
-                <groupId>com.ruoyi</groupId>
+                <groupId>com.cm</groupId>
                 <artifactId>htl-2000xt-common</artifactId>
                 <version>${ruoyi.version}</version>
             </dependency>
@@ -222,12 +222,12 @@
     </dependencyManagement>
 
     <modules>
-        <module>htl-2000xt-admin</module>
-        <module>htl-2000xt-framework</module>
-        <module>htl-2000xt-system</module>
-        <module>htl-2000xt-quartz</module>
-        <module>htl-2000xt-generator</module>
-        <module>htl-2000xt-common</module>
+        <module>hlt-2000xt-admin</module>
+        <module>hlt-2000xt-framework</module>
+        <module>hlt-2000xt-system</module>
+        <module>hlt-2000xt-quartz</module>
+        <module>hlt-2000xt-generator</module>
+        <module>hlt-2000xt-common</module>
     </modules>
     <packaging>pom</packaging>
 
