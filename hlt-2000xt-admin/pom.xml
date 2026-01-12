@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
-    <artifactId>htl-2000xt-admin</artifactId>
+    <artifactId>hlt-2000xt-admin</artifactId>
 
     <description>
         web服务入口
@@ -46,19 +46,19 @@
         <!-- 核心模块-->
         <dependency>
             <groupId>com.cm</groupId>
-            <artifactId>htl-2000xt-framework</artifactId>
+            <artifactId>hlt-2000xt-framework</artifactId>
         </dependency>
 
         <!-- 定时任务-->
         <dependency>
             <groupId>com.cm</groupId>
-            <artifactId>htl-2000xt-quartz</artifactId>
+            <artifactId>hlt-2000xt-quartz</artifactId>
         </dependency>
 
         <!-- 代码生成-->
         <dependency>
             <groupId>com.cm</groupId>
-            <artifactId>htl-2000xt-generator</artifactId>
+            <artifactId>hlt-2000xt-generator</artifactId>
         </dependency>
 
     </dependencies>
