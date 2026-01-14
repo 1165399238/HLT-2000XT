@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cm.system.mapper.HltDetectorMapper">
+    
+    <resultMap type="HltDetector" id="HltDetectorResult">
+        <result property="id"    column="id"    />
+        <result property="equipName"    column="equip_name"    />
+        <result property="detectorIp"    column="detector_ip"    />
+        <result property="detectorType"    column="detector_type"    />
+        <result property="detectorName"    column="detector_name"    />
+        <result property="creatTime"    column="creat_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+
+    <sql id="selectHltDetectorVo">
+        select id, equip_name, detector_ip, detector_type, detector_name, creat_time, create_by, update_time, update_by from hlt_detector
+    </sql>
+
+    <select id="selectHltDetectorList" parameterType="HltDetector" resultMap="HltDetectorResult">
+        <include refid="selectHltDetectorVo"/>
+        <where>  
+            <if test="equipName != null  and equipName != ''"> and equip_name like concat('%', #{equipName}, '%')</if>
+            <if test="detectorIp != null  and detectorIp != ''"> and detector_ip = #{detectorIp}</if>
+            <if test="detectorType != null  and detectorType != ''"> and detector_type = #{detectorType}</if>
+            <if test="detectorName != null  and detectorName != ''"> and detector_name like concat('%', #{detectorName}, '%')</if>
+            <if test="creatTime != null "> and creat_time = #{creatTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectHltDetectorById" parameterType="Long" resultMap="HltDetectorResult">
+        <include refid="selectHltDetectorVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHltDetector" parameterType="HltDetector" useGeneratedKeys="true" keyProperty="id">
+        insert into hlt_detector
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="equipName != null">equip_name,</if>
+            <if test="detectorIp != null">detector_ip,</if>
+            <if test="detectorType != null and detectorType != ''">detector_type,</if>
+            <if test="detectorName != null and detectorName != ''">detector_name,</if>
+            <if test="creatTime != null">creat_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="equipName != null">#{equipName},</if>
+            <if test="detectorIp != null">#{detectorIp},</if>
+            <if test="detectorType != null and detectorType != ''">#{detectorType},</if>
+            <if test="detectorName != null and detectorName != ''">#{detectorName},</if>
+            <if test="creatTime != null">#{creatTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHltDetector" parameterType="HltDetector">
+        update hlt_detector
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="equipName != null">equip_name = #{equipName},</if>
+            <if test="detectorIp != null">detector_ip = #{detectorIp},</if>
+            <if test="detectorType != null and detectorType != ''">detector_type = #{detectorType},</if>
+            <if test="detectorName != null and detectorName != ''">detector_name = #{detectorName},</if>
+            <if test="creatTime != null">creat_time = #{creatTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHltDetectorById" parameterType="Long">
+        delete from hlt_detector where id = #{id}
+    </delete>
+
+    <delete id="deleteHltDetectorByIds" parameterType="String">
+        delete from hlt_detector where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

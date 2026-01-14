@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cm.system.mapper.HltEquipMapper">
+    
+    <resultMap type="HltEquip" id="HltEquipResult">
+        <result property="id"    column="id"    />
+        <result property="equipCode"    column="equip_code"    />
+        <result property="equipAreaName"    column="equip_area_name"    />
+        <result property="equipMonitorPositon"    column="equip_monitor_positon"    />
+        <result property="equipIp"    column="equip_Ip"    />
+        <result property="equipName"    column="equip_name"    />
+        <result property="equipStatus"    column="equip_status"    />
+        <result property="equipType"    column="equip_type"    />
+        <result property="creatTime"    column="creat_time"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="remark"    column="remark"    />
+    </resultMap>
+
+    <sql id="selectHltEquipVo">
+        select id, equip_code, equip_area_name, equip_monitor_positon, equip_Ip, equip_name, equip_status, equip_type, creat_time, create_by, update_time, update_by, remark from hlt_equip
+    </sql>
+
+    <select id="selectHltEquipList" parameterType="HltEquip" resultMap="HltEquipResult">
+        <include refid="selectHltEquipVo"/>
+        <where>  
+            <if test="equipCode != null  and equipCode != ''"> and equip_code = #{equipCode}</if>
+            <if test="equipAreaName != null  and equipAreaName != ''"> and equip_area_name like concat('%', #{equipAreaName}, '%')</if>
+            <if test="equipMonitorPositon != null  and equipMonitorPositon != ''"> and equip_monitor_positon = #{equipMonitorPositon}</if>
+            <if test="equipIp != null  and equipIp != ''"> and equip_Ip = #{equipIp}</if>
+            <if test="equipName != null  and equipName != ''"> and equip_name like concat('%', #{equipName}, '%')</if>
+            <if test="equipStatus != null  and equipStatus != ''"> and equip_status = #{equipStatus}</if>
+            <if test="equipType != null  and equipType != ''"> and equip_type = #{equipType}</if>
+            <if test="params.beginCreatTime != null and params.beginCreatTime != '' and params.endCreatTime != null and params.endCreatTime != ''"> and creat_time between #{params.beginCreatTime} and #{params.endCreatTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectHltEquipById" parameterType="Long" resultMap="HltEquipResult">
+        <include refid="selectHltEquipVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHltEquip" parameterType="HltEquip" useGeneratedKeys="true" keyProperty="id">
+        insert into hlt_equip
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="equipCode != null">equip_code,</if>
+            <if test="equipAreaName != null">equip_area_name,</if>
+            <if test="equipMonitorPositon != null">equip_monitor_positon,</if>
+            <if test="equipIp != null">equip_Ip,</if>
+            <if test="equipName != null and equipName != ''">equip_name,</if>
+            <if test="equipStatus != null">equip_status,</if>
+            <if test="equipType != null and equipType != ''">equip_type,</if>
+            <if test="creatTime != null">creat_time,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="remark != null">remark,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="equipCode != null">#{equipCode},</if>
+            <if test="equipAreaName != null">#{equipAreaName},</if>
+            <if test="equipMonitorPositon != null">#{equipMonitorPositon},</if>
+            <if test="equipIp != null">#{equipIp},</if>
+            <if test="equipName != null and equipName != ''">#{equipName},</if>
+            <if test="equipStatus != null">#{equipStatus},</if>
+            <if test="equipType != null and equipType != ''">#{equipType},</if>
+            <if test="creatTime != null">#{creatTime},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="remark != null">#{remark},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHltEquip" parameterType="HltEquip">
+        update hlt_equip
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="equipCode != null">equip_code = #{equipCode},</if>
+            <if test="equipAreaName != null">equip_area_name = #{equipAreaName},</if>
+            <if test="equipMonitorPositon != null">equip_monitor_positon = #{equipMonitorPositon},</if>
+            <if test="equipIp != null">equip_Ip = #{equipIp},</if>
+            <if test="equipName != null and equipName != ''">equip_name = #{equipName},</if>
+            <if test="equipStatus != null">equip_status = #{equipStatus},</if>
+            <if test="equipType != null and equipType != ''">equip_type = #{equipType},</if>
+            <if test="creatTime != null">creat_time = #{creatTime},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHltEquipById" parameterType="Long">
+        delete from hlt_equip where id = #{id}
+    </delete>
+
+    <delete id="deleteHltEquipByIds" parameterType="String">
+        delete from hlt_equip where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
